@@ -24,6 +24,10 @@ const Movie = sequelize.define('movie', {
       type: DataTypes.INTEGER(3),
       allowNull: false
     },
+    img: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
     genre: {
       type: DataTypes.STRING(50),
       allowNull: false
