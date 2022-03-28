@@ -17,12 +17,14 @@ const Movie = sequelize.define('movie', {
       allowNull: false
     },
     duration:{
-      type: DataTypes.TIME(50),
-      allowNull:false
+      type: DataTypes.INTEGER(50),
+      allowNull: false,
+      defaultValue: 0
     },
     rating: {
       type: DataTypes.INTEGER(3),
-      allowNull: false
+      allowNull: false,
+      defaultValue: 1
     },
     img: {
       type: DataTypes.STRING(100),

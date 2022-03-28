@@ -1,3 +1,5 @@
+const { ref } = require('firebase/storage')
+
 //Model
 const { Movie } = require('../models/movies.model');
 
@@ -5,6 +7,7 @@ const { Movie } = require('../models/movies.model');
 const { catchAsync } = require('../util/catchAsync');
 const { appError } = require('../util/appError');
 const { filterObj } = require('../util/filterObj');
+const { storage } = require('../util/firebase')
 
 exports.getAllMovies = catchAsync(async(req, res, next) => {
     const movies = await Movie.findAll({
@@ -50,12 +53,15 @@ exports.createMovie = catchAsync(async(req, res, next) =>{
         );
     };
 
+    const imgRef = ref(storage, req.file.originalName);
+    const result = await uploadBytes(imgRef, req.file.buffer)
+
     const newMovie = await Movie.create({
         title: title,
         description: description,
         duration: duration,
         rating: rating,
-        img: '',
+        img: result.metadata.fullPath,
         genre: genre,
         status: status
     });

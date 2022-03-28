@@ -5,17 +5,15 @@ const { ActorInMovies } = require('../models/actorsInMovies.model');
 const { Actor } = require('../models/actors.model');
 
 const initModels = () => {
-    
-    //Preliminar relations
 
     User.hasMany(Review);
-    Review.belongsTo(User)
+    Review.belongsTo(User);
 
-    Movie.hasMany(Review)
+    Movie.hasMany(Review);
+    Review.belongsTo(Movie);
 
-    Movie.hasMany(Actor)
-
-    Actor.hasMany(Movie)
+    Movie.belongsToMany(Actor, { through: ActorInMovies });
+    Actor.belongsToMany(Movie, { through: ActorInMovies });
 }
 
 

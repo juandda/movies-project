@@ -18,14 +18,15 @@ const Actor = sequelize.define('actor', {
     },
     rating: {
       type: DataTypes.INTEGER(3),
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
     },
     age:{
       type: DataTypes.INTEGER(3),
       allowNull: false
     },
     profilePic: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(255),
       allowNull: false
     },
     status: {

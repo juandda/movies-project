@@ -5,12 +5,21 @@ const{
     getAllMovies,
     createMovie,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    getMovieById
 } = require('../controllers/movies.controller');
+
+const{ validateSession, protectAdmin } = require('../middlewares/auth.middleware')
 
 const router = express.Router();
 
+router.use(validateSession);
+
 router.get('/', getAllMovies);
+
+router.get('/:id', getMovieById);
+
+router.use(protectAdmin);
 
 router.post('/', createMovie);
 

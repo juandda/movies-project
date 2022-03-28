@@ -18,6 +18,15 @@ const Review = sequelize.define('review', {
   },
   rating: {
     type: DataTypes.INTEGER(3),
+    allowNull: false,
+    defaultValue: 1
+  },
+  userId:{
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  movieId:{
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   status: {
